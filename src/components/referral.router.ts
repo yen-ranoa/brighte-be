@@ -23,10 +23,11 @@ class UserRouter {
 	getRouter() {
 		const router = express.Router();
 		router.route('/:id').get(this.userController.getReferral);
+		router.route('/:id').put(this.upload.single('avatar'), this.userController.updateReferral);
+		router.route('/:id').delete(this.userController.deleteReferral);
 		router.route('/').get(this.userController.getReferrals);
 		router.route('/').post(this.upload.single('avatar'), this.userController.createReferral);
-		router.route('/update/:id').put(this.upload.single('avatar'), this.userController.updateReferral);
-		router.route('/delete/:id').delete(this.userController.deleteReferral);
+
 		return router;
 	}
 }

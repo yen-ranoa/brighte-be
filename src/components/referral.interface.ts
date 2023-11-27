@@ -11,4 +11,5 @@ export interface Referral {
 	addrPostCode: string;
 	addrCountry: string;
 	avatar?: string;
+	avatarFilename?: string;
 }

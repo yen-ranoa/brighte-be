@@ -9,16 +9,20 @@ class ReferralController {
 		this.referralService = ReferralService;
 	}
 
-	createReferral = (req: Request, res: Response) => {
-		const avatar = req.file?.path || '';
-		const referral = new ReferralUser({ ...req.body, avatar });
-		return res.status(201).send(this.referralService.addReferral(referral));
+	createReferral = async (req: Request, res: Response) => {
+		const avatar = req.file?.path;
+		const avatarFilename = req.file?.filename;
+		const referral = new ReferralUser({ ...req.body, avatar, avatarFilename });
+		return res.status(201).send(await this.referralService.addReferral(referral));
 	};
 
-	updateReferral = (req: Request, res: Response) => {
+	updateReferral = async (req: Request, res: Response) => {
 		const { id } = req.params;
-		const avatar = req.file?.path || '';
-		return res.status(200).send(this.referralService.updateReferral(id, { ...req.body, avatar } as Referral));
+		const avatar = req.file?.path;
+		const avatarFilename = req.file?.filename;
+		return res
+			.status(200)
+			.send(await this.referralService.updateReferral(id, { ...req.body, avatar, avatarFilename } as Referral));
 	};
 
 	getReferrals = (req: Request, res: Response) => res.status(200).send(this.referralService.getReferrals());

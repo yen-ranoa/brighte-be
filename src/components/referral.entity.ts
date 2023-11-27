@@ -16,6 +16,7 @@ class ReferralUser {
 	addrPostCode: string;
 	addrCountry: string;
 	avatar: string;
+	avatarFilename?: string;
 
 	constructor(referral: Referral) {
 		const {
@@ -30,6 +31,7 @@ class ReferralUser {
 			addrPostCode,
 			addrCountry,
 			avatar = '',
+			avatarFilename = '',
 		} = referral;
 		this.id = crypto.randomUUID();
 		this.givenName = givenName;
@@ -43,6 +45,7 @@ class ReferralUser {
 		this.addrPostCode = addrPostCode;
 		this.addrCountry = addrCountry;
 		this.avatar = avatar;
+		this.avatarFilename = avatarFilename;
 	}
 
 	toJSON() {
@@ -59,6 +62,7 @@ class ReferralUser {
 			addrPostCode: this.addrPostCode,
 			addrCountry: this.addrCountry,
 			avatar: this.avatar,
+			avatarFilename: this.avatarFilename,
 		};
 	}
 }
