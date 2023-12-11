@@ -1,4 +1,4 @@
-# Brighte BE repository
+# Referral App BE repository
 
 ## Available Scripts
 
